@@ -1,0 +1,9 @@
+#Might want to delete already installed requirements
+from node:alpine
+workdir '/app'
+#copy requirements file before others so source code change dose not lead to re-installation of requirements
+copy 'package.json' .
+run npm install
+#Can replace copy . . because container is creating reference to local. But, it might be better to keep it
+copy . .
+cmd ["npm","run","start"]
